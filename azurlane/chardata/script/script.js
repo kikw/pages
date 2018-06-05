@@ -337,7 +337,51 @@ function createTable(data){
 	 return {refresh: refresh};
 }
 
-var tags = {"陣営": "#chart_realm", "ﾚｱ度": "#chart_rare", "艦種": "#chart_type", "装甲": "#chart_armor" };
+function kenzo(name) {
+	if (name.lastIndexOf("0:", 0) == 0) {
+		return "1時間未満";
+	} else if (name.lastIndexOf("1:", 0) == 0) {
+		return "1時間台";
+	} else if (name.lastIndexOf("2:", 0) == 0) {
+		return "2時間台";
+	} else if (name.lastIndexOf("3:", 0) == 0) {
+		return "3時間台";
+	} else if (name.lastIndexOf("4:", 0) == 0) {
+		return "4時間台";
+	} else if (name.lastIndexOf("5:", 0) == 0) {
+		return "5時間台";
+	} else {
+		return name;
+	}
+}
+
+function endure(name) {
+	if (name) {
+		if (name < 1000) {
+			return "1000未満";
+		} else if (name < 2000){
+			return "1000台";
+		} else if (name < 3000){
+			return "2000台";
+		} else if (name < 4000){
+			return "3000台";
+		} else if (name < 5000){
+			return "4000台";
+		} else if (name < 6000){
+			return "5000台";
+		} else if (name < 7000){
+			return "6000台";
+		} else {
+			return "7000以上";
+		}
+	} else {
+		return "不明";
+	}
+}
+
+
+
+var tags = {"陣営": "#chart_realm", "ﾚｱ度": "#chart_rare", "艦種": "#chart_type", "建造": "#chart_create" , "耐久": "#chart_endure", "装甲": "#chart_armor"};
 
 var dimens = {};
 var filters = {};
@@ -354,8 +398,16 @@ d3.csv("./data/azurlane.csv").then(function(data) {
 
 	var names = d3.map(tags).keys();
 	names.forEach(function(name) {
-		 dimens[name] = cf.dimension(function(p) { return p[name]; });
-		 filters[name] = cf.dimension(function(p) { return p[name]; });
+		if (name == "建造") {
+			 dimens[name] = cf.dimension(function(p) { return kenzo(p["建造時間"]); });
+			 filters[name] = cf.dimension(function(p) { return kenzo(p["建造時間"]); });
+		} else if (name == "耐久") {
+			 dimens[name] = cf.dimension(function(p) { return endure(p[name]); });
+			 filters[name] = cf.dimension(function(p) { return endure(p[name]); });
+		} else {
+			 dimens[name] = cf.dimension(function(p) { return p[name]; });
+			 filters[name] = cf.dimension(function(p) { return p[name]; });
+		}
 		 d3s[name] = newPieChart();
 		 keys[name] = new Set();
 		 size[name] = dimens[name].group().all().length;
