@@ -391,7 +391,7 @@ var size = {}
 var table = null;
 var tableDimen = null;
 
-d3.csv("./data/azurlane.csv").then(function(data) {
+d3.csv("https://docs.google.com/spreadsheets/d/1aGw7t-wAsMQmnD6h3vI57zgtTgM2QzNGQN7wkSMWMmw/export?format=csv&gid=888117168").then(function(data) {
 
 	var cf = crossfilter(data);
 	tableDimen = cf.dimension(function(p) { return -Number(p["No."]); });
