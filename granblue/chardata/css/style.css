@@ -8,13 +8,19 @@ body {
 }
 
 #table {
+	border-top: #e3e3e3 1px solid;
 	clear: both;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
+	overflow-y: scroll;
+	height: 500px;
 }
 
 table {
 	width: 100%;;
 	border-collapse: collapse;
-	font-size: 1.2em;
+	font-size: .8em;
 }
 th {
 	border: #e3e3e3 1px solid;
@@ -24,9 +30,17 @@ th {
 	font-weight: normal;
 }
 
+tbody > tr {
+	cursor: pointer;
+}
+
+tbody > tr.checked {
+	background: #FFCCBC;
+}
+
 tr th:nth-of-type(1),
 tr th:nth-of-type(9),
-tr th:nth-of-type(10),
+tr th:nth-of-type(11),
 tr th:nth-of-type(14),
 tr th:nth-of-type(15),
 tr th:nth-of-type(16),
@@ -44,7 +58,7 @@ td {
 
 tr td:nth-of-type(1),
 tr td:nth-of-type(9),
-tr td:nth-of-type(10),
+tr td:nth-of-type(11),
 tr td:nth-of-type(14),
 tr td:nth-of-type(15),
 tr td:nth-of-type(16),
@@ -59,18 +73,18 @@ tr td:nth-of-type(18){
 
 .title {
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: bold;
 	display: inline-block;
 }
 
 .label {
-	font-size: 12px;
+	font-size: .7em;
 	fill: white;
 	pointer-events: none;
 }
 
 .name, .value, .percentage {
-	font-size: 12px;
+	font-size: .8em;
 }
 
 path{
@@ -90,33 +104,73 @@ path{
 }
 
 .header {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background-color: #0D47A1;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	background-color: #0D47A1;
+	vertical-align: middle;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.header {
-	list-style: none;
-	display: table;
+.header span {
+	font-size: 1.2em;
+	color: #eee;
+	line-height: 40px;
+	display: block;
 }
 
 .header a{
-	display: table-cell;
-	vertical-align: middle;
-	font-size: 18px;
+	font-size: 1.5em;
 	text-decoration: none;
 	color: #fff;
+	line-height: 40px;
 }
 
 .left {
-	padding-left: 20px;
+	padding-left: 10px;
+	float: left;
 }
 
 .right {
-	text-align: right;
-	padding-right: 20px;
+	float: right;
+	padding-right: 10px;
+}
+
+#selected {
+	margin-left: 20px;
+}
+
+#selected label {
+	position: relative;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	vertical-align: middle;
+}
+
+#selected input {
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+#selected span {
+	padding-left: 20px;
+	font-size: 14px;
+    font-weight: bold;
+}
+
+.tooltip {
+    position: absolute;
+    width: auto;
+    height: auto;
+    pointer-events: none;
+    background: #fff;
+    padding: 5px;
+    border: solid 1px #ccc;
+    border-radius: 3px;
 }
