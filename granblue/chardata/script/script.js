@@ -27,7 +27,7 @@ function update(name, d)  {
 			 filter.filterAll();
 		 } else {
 			 filter.filter(function(d){
-				 var sp = d.split(",");
+				 var sp = d.split("/");
 				 if (sp.length == 1) {
 					 return set.has(d);
 				 } else {
@@ -264,7 +264,7 @@ function newPieChart (options) {
 	 function mergeWeapon(org){
 		 var data = {};
 		 org.forEach(function(d){
-			var s = d.key.split(",");
+			var s = d.key.split("/");
 			s.forEach(function(s){
 				if (data[s]) {
 					data[s] = data[s] + d.value;
@@ -296,11 +296,11 @@ function newPieChart (options) {
 		var dimen = dimens[name];
 
 		var data = dimen.group().top(Infinity);
-		if (name == "得意武器") {
+		if (name == "得意武器" || name == "種族") {
 			data = mergeWeapon(data);
 		}
 		if (data.length > 11) {
-			width = 700;
+			width = 850;
 		}
 
 		// タイトル
@@ -326,7 +326,7 @@ function newPieChart (options) {
 
 	pieChart.refresh = function(name) {
 		var data = dimens[name].group().top(Infinity);
-		if (name == "得意武器") {
+		if (name == "得意武器" || name == "種族") {
 			data = mergeWeapon(data);
 		}
 
