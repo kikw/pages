@@ -575,7 +575,7 @@ var r = [];
 var sr = [];
 var ssr = [];
 
-d3.csv("https://docs.google.com/spreadsheets/d/12dJvKrcs3RBl5KvjIMxYogkGwDE_k6OgxvSEjNCUI_8/export?format=csv&gid=808323101").then(function(data) {
+d3.csv("https://script.google.com/macros/s/AKfycbx9KFtTARrWmxMS693qb6m20RDlUpjjX87Qo9Yj/exec").then(function(data) {
 
 	var cf = crossfilter(data);
 	tableDimen = cf.dimension(function(p) { return -Number(p["No"]); });

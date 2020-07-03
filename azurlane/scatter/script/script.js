@@ -6,7 +6,7 @@ new Vue({
 	data: radio
 });
 
-d3.csv("https://docs.google.com/spreadsheets/d/1aGw7t-wAsMQmnD6h3vI57zgtTgM2QzNGQN7wkSMWMmw/export?format=csv&gid=888117168").then(function(data) {
+d3.csv("https://script.google.com/macros/s/AKfycbx4rlJYPyGqCDrsS-bxM0AUJIEbQcpx1SB_APJ4RyvOOmzyhDmy/exec").then(function(data) {
 
 	var cf = crossfilter(data);
 
